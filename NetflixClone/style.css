@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background: rgb(0, 0, 0);
+}
+
+.container {
+  background: linear-gradient(rgba(0, 0, 0, 0.6)), url("./images/image1.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: 2fr auto auto;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10%;
+}
+.logo {
+  width: 180px;
+  height: 100px;
+  margin-left: 10%;
+}
+
+.sign-btn {
+  padding: 5px 16px;
+  color: rgb(255, 255, 255);
+  background: red;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.lang-btn {
+  padding: 5px 25px;
+  color: rgb(255, 255, 255);
+  background: black;
+  border-radius: 5px;
+  cursor: pointer;
+  border: solid 1px white;
+}
+.sign-btn:hover,
+.get_button:hover {
+  background: #c11119;
+}
+
+.lang-btn:hover {
+  border-color: white;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.hero_content {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  color: aliceblue;
+  row-gap: 10px;
+  margin-top: 10%;
+}
+.hero_content h1 {
+  font-size: 4rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+.email_box {
+  padding: 10px;
+}
+.email {
+  width: 350px;
+  padding: 18px;
+  background: #111;
+  border: 1px solid grey;
+  color: white;
+  border-radius: 5px;
+}
+.get_button {
+  padding: 12px 40px;
+  border-radius: 7px;
+  border: none;
+  color: rgb(255, 255, 255);
+  background: red;
+}
+.curve {
+  height: 8px;
+  background: linear-gradient(90deg, #ff0057, #2b4cff);
+  border-radius: 50%;
+  box-shadow: 0 0 30px blue;
+}
+h3 {
+  color: white;
+  margin-left: 20%;
+  padding-top: 30px;
+}
+h2{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.card_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  justify-content: center;
+  gap: 50px;
+}
+
+.movie_card {
+  position: relative;
+  padding-top: 20px;
+  padding-left: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.movie_number {
+    position: absolute;
+    left: -5px;
+    bottom: 5px;
+    font-size: 8rem;
+    font-weight: 900;
+    color: black;
+    -webkit-text-stroke: 2px #fff;
+    
+}
+
+.movie_card:hover {
+  transform: scale(1.08);
+}
+.card_img {
+  height: 300px;
+  width: 250px;
+  border-radius: 20px;
+}
+.discription {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  color: white;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-top: 10px;
+  gap: 20px;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.div3 {
+  grid-area: 1 / 3 / 2 / 4;
+}
+.div4 {
+  grid-area: 1 / 4 / 2 / 5;
+}
+
+.reason-card {
+  background: linear-gradient(to bottom right, #1f1746, #0b0b0b);
+  border-radius: 15px;
+  width: 100%;
+  height: 250px;
+  padding-top: 50px;
+  padding-left: 10px;
+}
+
+.discription div h2,
+.discription div p {
+  padding: 10px;
+}
+
+.div1 p,
+.div2 p,
+.div3 p,
+.div4 p {
+  color: gray;
+}
+.frequent {
+  color: white;
+  margin-left: 20%;
+  margin-right: 20%;
+
+
+}
+.frequent_list {
+  display: grid;
+  grid-template-columns: 1fr;
+  list-style: none;
+  gap: 10px;
+
+}
+
+.frequent_li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  background: #333333;
+}
+
+.frequent_li:hover {
+  background: #8d8b8b;
+}
+
+.bottom_email_box {
+  margin-top: 20px;
+  margin-left: 30%;
+}
+
+.footer_footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  list-style: none;
+  color: white;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 5%;
+}
+
+
+
+.footer-text {
+  color: grey;
+  margin-left: 20%;
+  margin-top: 40px;
+  margin-bottom: 10px;
+
+}
+.footer_list li {
+  list-style: none;
+  margin-bottom: 15px;
+  color: #b3b3b3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.netflix_india{
+   color: grey;
+  
+}
+.footer-sub{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20%;
+  margin-right: 20%;
+}

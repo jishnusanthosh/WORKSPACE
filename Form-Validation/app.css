@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: url("./background.jpg") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+.container {
+  width: 500px;
+  background-color: #0f4252;
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
+}
+.header {
+  background-color: #247287;
+  padding: 10px 20px;
+}
+.form {
+  padding: 40px 40px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  position: relative;
+}
+.form-control label {
+  font-size: larger;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.form-control input {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border-radius: 4px;
+  border: 2px solid white;
+}
+
+.form-control.success input {
+  border: 2px solid rgb(37, 173, 37);
+}
+.form-control.error input {
+  border: 2px solid rgb(174, 19, 19);
+}
+
+.form-control small {
+  position: absolute;
+  margin: 3px;
+  visibility: hidden;
+}
+button {
+  font-size: larger;
+  background-color: #001621;
+  color: aliceblue;
+  padding: 25px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid rgb(4, 4, 95);
+  cursor: pointer;
+}
+button:hover {
+  background: #052a3d;
+}
