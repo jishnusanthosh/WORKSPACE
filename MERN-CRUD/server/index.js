@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import dns from "node:dns";
+import route from "./routes/userRoute.js"
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
@@ -30,3 +31,6 @@ mongoose
     console.error("❌ MongoDB Connection Error:");
     console.error(err);
   });
+
+
+  app.use("/api",route)
