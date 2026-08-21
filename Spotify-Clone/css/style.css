@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+.card {
+  width: 200px;
+  padding: 20px;
+}
+.top-navbar {
+  height: 64px;
+  background-color: #000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+}
+
+.logo {
+  width: 250px;
+}
+
+.logo i {
+  font-size: 34px;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-button {
+  width: 48px;
+  height: 48px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #1f1f1f;
+  color: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.search-box {
+  width: 420px;
+  height: 48px;
+
+  background-color: #242424;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 30px;
+
+  padding: 0 18px;
+
+  gap: 12px;
+}
+
+.search-box i {
+  font-size: 20px;
+  color: #b3b3b3;
+}
+
+.search-box input {
+  flex: 1;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 15px;
+}
+
+.search-box input::placeholder {
+  color: #b3b3b3;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  font-size: 14px;
+
+  color: #b3b3b3;
+}
+
+.nav-right span {
+  cursor: pointer;
+}
+
+.signup-button {
+  border: none;
+
+  background: transparent;
+
+  color: #b3b3b3;
+
+  font-weight: 600;
+}
+
+.login-button {
+  border: none;
+
+  background-color: white;
+
+  color: black;
+
+  padding: 12px 25px;
+
+  border-radius: 30px;
+
+  font-weight: 700;
+}
+
+
+.app-layou

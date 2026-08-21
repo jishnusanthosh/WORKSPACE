@@ -1,3 +1,4 @@
+import { stat } from "node:fs"
 import User from "../model/userModel.js"
 
 
@@ -16,5 +17,30 @@ export const create=async (req,res)=>{
     
     } catch (error) {
         res.status(500).json({errorMessage:error.message})
+    }
+}
+export const getAllusers=async(req,res)=>{
+    try {
+        const userData=await User.find()
+        if (!userData || userData.length==0) {
+            return res.status(404).json({message:"user data not found"}) //data not found in databse
+        }
+        res.status(200).json(userData)
+    } catch (error) {
+         res.status(500).json({errorMessage:error.message}) //internal server error
+    }
+}
+
+export const gerUserByid=async (req,res)=>{
+    try {
+        const id=req.param.id;
+        const userExist= await User.findById(id)
+        if (!userExist) {
+           return res.status(404).json({message:"User not found"}) //data not found in databse
+        }
+        res.status(200).json(userExist)
+        
+    } catch (error) {
+         res.status(500).json({errorMessage:error.message}) //internal server error
     }
 }
