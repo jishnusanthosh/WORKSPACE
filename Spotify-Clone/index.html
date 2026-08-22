@@ -5,29 +5,36 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Spotify</title>
+    <title>Spotify Clone</title>
 
+    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 
+    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
 
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
     <header class="top-navbar">
       <div class="logo">
         <i class="bi bi-spotify"></i>
       </div>
 
       <div class="nav-center">
-        <button class="home-button">
+        <button class="home-button" type="button">
           <i class="bi bi-house-door-fill"></i>
         </button>
 
@@ -43,38 +50,199 @@
         <span>Support</span>
         <span>Download</span>
 
-        <button class="signup-button">Sign up</button>
+        <button class="signup-button" type="button">Sign up</button>
 
-        <button class="login-button">Log in</button>
+        <button class="login-button" type="button">Log in</button>
       </div>
     </header>
 
+    <!-- =========================================
+         MAIN APPLICATION
+    ========================================== -->
 
     <main class="app-layout">
-        <aside class="sidebar">
-            sidebar
-        </aside>
+      <!-- =========================================
+           SIDEBAR
+      ========================================== -->
 
-        <section class="main-content">
-            Main content
+      <aside class="sidebar">
+        <div class="library-header">
+          <h2>Your Library</h2>
 
-        </section>
+          <button class="create-button" type="button">
+            <i class="bi bi-plus-lg"></i>
+            Create
+          </button>
+        </div>
+
+        <div class="library-card">
+          <h3>Create your first playlist</h3>
+
+          <p>It's easy, we'll help you</p>
+
+          <button type="button">Create playlist</button>
+        </div>
+
+        <div class="library-card">
+          <h3>Let's find some podcasts to follow</h3>
+
+          <p>We'll keep you updated on new episodes</p>
+
+          <button type="button">Browse podcasts</button>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="sidebar-links">
+            <span>Legal</span>
+            <span>Safety & Privacy Center</span>
+            <span>Privacy Policy</span>
+            <span>Cookies</span>
+            <span>About Ads</span>
+            <span>Accessibility</span>
+          </div>
+
+          <button class="language-button" type="button">
+            <i class="bi bi-globe"></i>
+            English
+          </button>
+        </div>
+      </aside>
+
+      <!-- =========================================
+           MAIN CONTENT
+      ========================================== -->
+<!-- TRENDING SONGS -->
+
+<section class="content-section">
+  <div class="section-header">
+    <h2>Trending songs</h2>
+    <button class="show-all-btn">Show all</button>
+  </div>
+
+  <div class="song-row" id="trendingSongRow"></div>
+</section>
+
+
+<!-- POPULAR ARTISTS -->
+
+<section class="content-section">
+  <div class="section-header">
+    <h2>Popular artists</h2>
+    <button class="show-all-btn">Show all</button>
+  </div>
+
+  <div class="artist-row" id="artistRow"></div>
+</section>
+
+
+<!-- POPULAR ALBUMS -->
+
+<section class="content-section">
+  <div class="section-header">
+    <h2>Popular albums and singles</h2>
+    <button class="show-all-btn">Show all</button>
+  </div>
+
+  <div class="song-row" id="albumRow"></div>
+</section>
+ 
     </main>
 
+    <!-- =========================================
+         MUSIC PLAYER
+    ========================================== -->
 
+    <div class="music-player">
+      <!-- Current Song -->
 
+      <div class="player-song-info">
+        <img
+          src="./assets/images/song1.jpg"
+          alt="Current song"
+          class="player-song-image"
+          id="currentSongImage"
+        />
 
+        <div class="player-song-text">
+          <h4 id="currentSongTitle">Tera Mera Rishta</h4>
 
+          <p id="currentSongArtist">Mithoon, Pritam</p>
+        </div>
 
+        <button class="player-small-btn" type="button">
+          <i class="bi bi-heart"></i>
+        </button>
+      </div>
 
+      <!-- Center Player -->
 
+      <div class="player-center">
+        <div class="player-controls">
+          <button class="player-control-btn" type="button" id="shuffleBtn">
+            <i class="bi bi-shuffle"></i>
+          </button>
 
+          <button class="player-control-btn" type="button" id="previousBtn">
+            <i class="bi bi-skip-start-fill"></i>
+          </button>
 
+          <button class="main-play-btn" type="button" id="playPauseBtn">
+            <i class="bi bi-play-fill"></i>
+          </button>
 
+          <button class="player-control-btn" type="button" id="nextBtn">
+            <i class="bi bi-skip-end-fill"></i>
+          </button>
 
+          <button class="player-control-btn" type="button" id="repeatBtn">
+            <i class="bi bi-repeat"></i>
+          </button>
+        </div>
 
+        <div class="player-progress">
+          <span id="currentTime">0:00</span>
+
+          <input
+            type="range"
+            id="progressBar"
+            min="0"
+            max="100"
+            value="0"
+          />
+
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <!-- Volume -->
+
+      <div class="player-volume">
+        <button class="player-small-btn" type="button">
+          <i class="bi bi-volume-up"></i>
+        </button>
+
+        <input
+          type="range"
+          id="volumeBar"
+          min="0"
+          max="1"
+          step="0.01"
+          value="1"
+        />
+      </div>
+    </div>
+
+    <!-- Actual Browser Audio Player -->
+
+    <audio id="audioPlayer" preload="metadata">
+      <source src="./assets/audio/song1.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Bootstrap -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript -->
 
     <script src="./js/app.js"></script>
   </body>

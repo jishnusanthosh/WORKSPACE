@@ -1,20 +1,38 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   background-color: #000;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
-.card {
-  width: 200px;
-  padding: 20px;
+
+button,
+input {
+  font-family: inherit;
 }
+
+/* =========================================
+   NAVBAR
+========================================= */
+
 .top-navbar {
   height: 64px;
+
   background-color: #000;
 
   display: flex;
@@ -22,10 +40,15 @@ body {
   justify-content: space-between;
 
   padding: 0 16px;
+
+  gap: 20px;
 }
 
 .logo {
-  width: 250px;
+  width: 220px;
+
+  display: flex;
+  align-items: center;
 }
 
 .logo i {
@@ -35,7 +58,12 @@ body {
 .nav-center {
   display: flex;
   align-items: center;
+
   gap: 10px;
+
+  flex: 1;
+
+  justify-content: center;
 }
 
 .home-button {
@@ -51,10 +79,24 @@ body {
   font-size: 20px;
 
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.home-button:hover {
+  background-color: #2a2a2a;
+  transform: scale(1.04);
 }
 
 .search-box {
-  width: 420px;
+  width: min(420px, 100%);
+
   height: 48px;
 
   background-color: #242424;
@@ -67,15 +109,34 @@ body {
   padding: 0 18px;
 
   gap: 12px;
+
+  border: 1px solid transparent;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.search-box:hover {
+  background-color: #2a2a2a;
+
+  border-color: #3a3a3a;
+}
+
+.search-box:focus-within {
+  border-color: #fff;
 }
 
 .search-box i {
   font-size: 20px;
+
   color: #b3b3b3;
 }
 
 .search-box input {
   flex: 1;
+
+  min-width: 0;
 
   border: none;
   outline: none;
@@ -104,6 +165,14 @@ body {
 
 .nav-right span {
   cursor: pointer;
+
+  font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.nav-right span:hover {
+  color: white;
 }
 
 .signup-button {
@@ -113,7 +182,15 @@ body {
 
   color: #b3b3b3;
 
-  font-weight: 600;
+  font-weight: 700;
+
+  padding: 10px;
+
+  cursor: pointer;
+}
+
+.signup-button:hover {
+  color: white;
 }
 
 .login-button {
@@ -128,7 +205,874 @@ body {
   border-radius: 30px;
 
   font-weight: 700;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
 }
 
+.login-button:hover {
+  transform: scale(1.04);
+}
 
-.app-layou
+/* =========================================
+   MAIN APPLICATION LAYOUT
+========================================= */
+
+.app-layout {
+  display: flex;
+
+  gap: 8px;
+
+  height: calc(100vh - 64px - 90px);
+
+  padding: 0 8px 8px;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+  width: 340px;
+
+  min-width: 340px;
+
+  background-color: #121212;
+
+  border-radius: 8px;
+
+  padding: 20px 8px 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+}
+
+.library-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 12px;
+}
+
+.library-header h2 {
+  font-size: 16px;
+
+  font-weight: 700;
+
+  margin: 0;
+}
+
+.create-button {
+  border: none;
+
+  background-color: #1f1f1f;
+
+  color: white;
+
+  padding: 8px 14px;
+
+  border-radius: 25px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+.create-button:hover {
+  background-color: #2a2a2a;
+}
+
+/* =========================================
+   SIDEBAR CARDS
+========================================= */
+
+.library-card {
+  background-color: #1f1f1f;
+
+  border-radius: 8px;
+
+  padding: 18px;
+
+  margin-top: 25px;
+}
+
+.library-card h3 {
+  font-size: 16px;
+
+  font-weight: 700;
+
+  margin-bottom: 10px;
+}
+
+.library-card p {
+  font-size: 14px;
+
+  margin-bottom: 18px;
+
+  color: #f1f1f1;
+}
+
+.library-card button {
+  border: none;
+
+  background-color: white;
+
+  color: black;
+
+  padding: 8px 16px;
+
+  border-radius: 25px;
+
+  font-weight: 700;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.library-card button:hover {
+  transform: scale(1.04);
+}
+
+/* =========================================
+   SIDEBAR FOOTER
+========================================= */
+
+.sidebar-footer {
+  margin-top: auto;
+
+  padding: 25px 12px 5px;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px 15px;
+
+  margin-bottom: 25px;
+}
+
+.sidebar-links span {
+  font-size: 11px;
+
+  color: #b3b3b3;
+
+  cursor: pointer;
+}
+
+.sidebar-links span:hover {
+  text-decoration: underline;
+}
+
+.language-button {
+  border: 1px solid #727272;
+
+  background-color: transparent;
+
+  color: white;
+
+  border-radius: 25px;
+
+  padding: 7px 13px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  cursor: pointer;
+}
+
+.language-button:hover {
+  border-color: white;
+
+  transform: scale(1.02);
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+  flex: 1;
+
+  min-width: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 90, 85, 0.18) 0%,
+      rgba(18, 18, 18, 1) 240px
+    ),
+    #121212;
+
+  border-radius: 8px;
+
+  padding: 25px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-color: #555 transparent;
+}
+
+/* =========================================
+   CONTENT SECTIONS
+========================================= */
+
+.content-section {
+  margin-bottom: 45px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.section-header h2 {
+  font-size: 24px;
+
+  font-weight: 700;
+
+  margin: 0;
+}
+
+.show-all-btn {
+  border: none;
+
+  background: transparent;
+
+  color: #b3b3b3;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.show-all-btn:hover {
+  text-decoration: underline;
+
+  color: white;
+}
+
+/* =========================================
+   SONG ROW
+========================================= */
+
+.song-row {
+  display: flex;
+
+  gap: 18px;
+
+  overflow-x: auto;
+
+  padding-bottom: 10px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #444 transparent;
+}
+
+.song-row::-webkit-scrollbar {
+  height: 7px;
+}
+
+.song-row::-webkit-scrollbar-thumb {
+  background-color: #444;
+
+  border-radius: 10px;
+}
+
+/* =========================================
+   SONG CARD
+========================================= */
+
+.song-card {
+  min-width: 170px;
+
+  width: 170px;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.song-card:hover {
+  background-color: #1f1f1f;
+}
+
+.song-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  margin-bottom: 12px;
+}
+
+.song-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 6px;
+
+  display: block;
+}
+
+.song-card h3 {
+  font-size: 15px;
+
+  font-weight: 600;
+
+  margin-bottom: 6px;
+
+  color: white;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.song-card p {
+  font-size: 13px;
+
+  color: #b3b3b3;
+
+  margin: 0;
+
+  line-height: 1.4;
+}
+
+/* =========================================
+   CARD PLAY BUTTON
+========================================= */
+
+.card-play-btn {
+  position: absolute;
+
+  right: 10px;
+  bottom: 10px;
+
+  width: 46px;
+  height: 46px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background-color: #1ed760;
+
+  color: black;
+
+  font-size: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+
+  transform: translateY(8px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.song-card:hover .card-play-btn {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.card-play-btn:hover {
+  background-color: #3be477;
+
+  transform: scale(1.06) !important;
+}
+
+/* =========================================
+   ARTIST ROW
+========================================= */
+
+.artist-row {
+  display: flex;
+
+  gap: 18px;
+
+  overflow-x: auto;
+
+  padding-bottom: 10px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #444 transparent;
+}
+
+.artist-row::-webkit-scrollbar {
+  height: 7px;
+}
+
+.artist-row::-webkit-scrollbar-thumb {
+  background-color: #444;
+
+  border-radius: 10px;
+}
+
+/* =========================================
+   ARTIST CARD
+========================================= */
+
+.artist-card {
+  min-width: 170px;
+
+  width: 170px;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.artist-card:hover {
+  background-color: #1f1f1f;
+}
+
+.artist-image {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  margin-bottom: 12px;
+
+  display: block;
+}
+
+.artist-card h3 {
+  font-size: 15px;
+
+  font-weight: 600;
+
+  margin-bottom: 4px;
+}
+
+.artist-card p {
+  color: #b3b3b3;
+
+  font-size: 13px;
+
+  margin: 0;
+}
+
+/* =========================================
+   MUSIC PLAYER
+========================================= */
+
+.music-player {
+  height: 90px;
+
+  background-color: #000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  border-top: 1px solid #282828;
+}
+
+/* =========================================
+   CURRENT SONG
+========================================= */
+
+.player-song-info {
+  width: 30%;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.player-song-image {
+  width: 56px;
+  height: 56px;
+
+  min-width: 56px;
+
+  object-fit: cover;
+
+  border-radius: 4px;
+}
+
+.player-song-text {
+  min-width: 0;
+}
+
+.player-song-text h4 {
+  font-size: 14px;
+
+  font-weight: 500;
+
+  margin: 0 0 4px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.player-song-text p {
+  font-size: 12px;
+
+  color: #b3b3b3;
+
+  margin: 0;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+/* =========================================
+   PLAYER CENTER
+========================================= */
+
+.player-center {
+  width: 40%;
+
+  max-width: 650px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+}
+
+.player-control-btn,
+.player-small-btn {
+  border: none;
+
+  background: transparent;
+
+  color: #b3b3b3;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-control-btn:hover,
+.player-small-btn:hover {
+  color: white;
+}
+
+/* =========================================
+   MAIN PLAY BUTTON
+========================================= */
+
+.main-play-btn {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background-color: white;
+
+  color: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition: transform 0.15s ease;
+}
+
+.main-play-btn:hover {
+  transform: scale(1.07);
+}
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.player-progress {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.player-progress span {
+  min-width: 35px;
+
+  color: #b3b3b3;
+
+  font-size: 11px;
+}
+
+.player-progress span:last-child {
+  text-align: right;
+}
+
+#progressBar {
+  flex: 1;
+
+  height: 4px;
+
+  cursor: pointer;
+
+  accent-color: #1ed760;
+}
+
+/* =========================================
+   VOLUME
+========================================= */
+
+.player-volume {
+  width: 30%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+}
+
+#volumeBar {
+  width: 110px;
+
+  height: 4px;
+
+  cursor: pointer;
+
+  accent-color: #1ed760;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .nav-right span {
+    display: none;
+  }
+
+  .logo {
+    width: auto;
+  }
+
+  .sidebar {
+    width: 280px;
+
+    min-width: 280px;
+  }
+
+  .player-song-info {
+    width: 25%;
+  }
+
+  .player-center {
+    width: 50%;
+  }
+
+  .player-volume {
+    width: 25%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .top-navbar {
+    height: auto;
+
+    min-height: 64px;
+
+    padding: 8px 12px;
+  }
+
+  .nav-center {
+    justify-content: flex-start;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  .app-layout {
+    height: calc(100vh - 64px - 80px);
+
+    padding: 0 5px 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    padding: 18px 12px;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+  }
+
+  .song-card,
+  .artist-card {
+    width: 145px;
+
+    min-width: 145px;
+  }
+
+  .music-player {
+    height: 80px;
+
+    padding: 0 10px;
+  }
+
+  .player-song-info {
+    width: 35%;
+  }
+
+  .player-song-image {
+    width: 48px;
+    height: 48px;
+
+    min-width: 48px;
+  }
+
+  .player-center {
+    width: 65%;
+  }
+
+  .player-volume {
+    display: none;
+  }
+
+  .player-control-btn:first-child,
+  .player-control-btn:last-child {
+    display: none;
+  }
+
+  .player-progress span {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .home-button {
+    display: none;
+  }
+
+  .logo i {
+    font-size: 30px;
+  }
+
+  .song-card,
+  .artist-card {
+    width: 135px;
+
+    min-width: 135px;
+  }
+
+  .player-song-info {
+    width: 45%;
+  }
+
+  .player-center {
+    width: 55%;
+  }
+
+  .player-song-text p {
+    display: none;
+  }
+
+  .player-small-btn {
+    display: none;
+  }
+
+  .player-controls {
+    gap: 12px;
+  }
+}
