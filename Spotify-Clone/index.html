@@ -5,16 +5,18 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1"
   >
 
   <title>Spotify Clone</title>
 
+  <!-- Bootstrap -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
     rel="stylesheet"
   >
 
+  <!-- Bootstrap Icons -->
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
@@ -26,244 +28,404 @@
   >
 </head>
 
-<body>
+<body class="bg-black text-white vh-100 d-flex flex-column overflow-hidden">
 
-  <!-- NAVBAR -->
 
-  <header class="top-navbar">
+  <!-- ================================
+       NAVBAR
+  ================================= -->
 
-    <div class="logo">
-      <i class="bi bi-spotify"></i>
-    </div>
+  <nav class="navbar navbar-dark bg-black px-2 px-md-3 py-2 flex-shrink-0">
 
-    <div class="nav-center">
+    <div class="container-fluid p-0">
 
-      <button
-        class="home-button"
-        type="button"
-      >
-        <i class="bi bi-house-door-fill"></i>
-      </button>
+      <div class="d-flex align-items-center w-100 gap-2 gap-md-3">
 
-      <div class="search-box">
 
-        <i class="bi bi-search"></i>
+        <!-- LOGO -->
 
-        <input
-          type="text"
-          placeholder="What do you want to play?"
+        <a
+          href="#"
+          class="navbar-brand m-0 flex-shrink-0"
         >
-
-      </div>
-
-    </div>
-
-    <div class="nav-right">
-
-      <span>Premium</span>
-      <span>Support</span>
-      <span>Download</span>
-
-      <button
-        class="signup-button"
-        type="button"
-      >
-        Sign up
-      </button>
-
-      <button
-        class="login-button"
-        type="button"
-      >
-        Log in
-      </button>
-
-    </div>
-
-  </header>
+          <i class="bi bi-spotify fs-2"></i>
+        </a>
 
 
-  <!-- MAIN -->
-
-  <main class="app-layout">
-
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-      <div class="library-header">
-
-        <h2>Your Library</h2>
+        <!-- HOME -->
 
         <button
-          class="create-button"
+          class="btn home-btn rounded-circle d-none d-sm-flex align-items-center justify-content-center flex-shrink-0"
           type="button"
         >
-          <i class="bi bi-plus-lg"></i>
-          Create
+          <i class="bi bi-house-door-fill"></i>
         </button>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-wrapper flex-grow-1">
+
+          <div class="input-group search-box">
+
+            <span class="input-group-text border-0 bg-transparent text-secondary">
+              <i class="bi bi-search fs-5"></i>
+            </span>
+
+            <input
+              type="text"
+              class="form-control border-0 bg-transparent text-white shadow-none"
+              placeholder="What do you want to play?"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- RIGHT NAV -->
+
+        <div class="d-none d-xl-flex align-items-center gap-3 ms-auto">
+
+          <span class="nav-link-text">
+            Premium
+          </span>
+
+          <span class="nav-link-text">
+            Support
+          </span>
+
+          <span class="nav-link-text">
+            Download
+          </span>
+
+        </div>
+
+
+        <div class="d-none d-lg-flex align-items-center gap-2">
+
+          <button
+            class="btn text-secondary fw-bold"
+            type="button"
+          >
+            Sign up
+          </button>
+
+          <button
+            class="btn btn-light rounded-pill fw-bold px-4 py-2"
+            type="button"
+          >
+            Log in
+          </button>
+
+        </div>
 
       </div>
 
+    </div>
 
-      <div class="library-card">
-
-        <h3>
-          Create your first playlist
-        </h3>
-
-        <p>
-          It's easy, we'll help you
-        </p>
-
-        <button type="button">
-          Create playlist
-        </button>
-
-      </div>
+  </nav>
 
 
-      <div class="library-card">
+  <!-- ================================
+       MAIN APPLICATION
+  ================================= -->
 
-        <h3>
-          Let's find some podcasts to follow
-        </h3>
+  <main class="container-fluid flex-grow-1 overflow-hidden px-2 pb-2">
 
-        <p>
-          We'll keep you updated on new episodes
-        </p>
-
-        <button type="button">
-          Browse podcasts
-        </button>
-
-      </div>
-
-    </aside>
+    <div class="row g-2 h-100">
 
 
-    <!-- MAIN CONTENT -->
+      <!-- ================================
+           SIDEBAR
+      ================================= -->
 
-    <section class="main-content">
+      <aside class="col-lg-3 col-xl-2 d-none d-lg-block h-100">
+
+        <div class="spotify-panel h-100 rounded-3 p-3 overflow-auto">
 
 
-      <!-- TRENDING -->
+          <!-- LIBRARY HEADER -->
 
-      <section class="content-section">
+          <div class="d-flex align-items-center justify-content-between gap-2 mb-4">
 
-        <div class="section-header">
-          <h2>Trending songs</h2>
+            <h2 class="fs-6 fw-bold m-0">
+              Your Library
+            </h2>
+
+            <button
+              class="btn create-btn rounded-pill text-white fw-semibold d-flex align-items-center gap-2"
+              type="button"
+            >
+              <i class="bi bi-plus-lg"></i>
+
+              <span class="d-none d-xl-inline">
+                Create
+              </span>
+            </button>
+
+          </div>
+
+
+          <!-- PLAYLIST CARD -->
+
+          <div class="library-card rounded-3 p-3 mb-3">
+
+            <h3 class="fs-6 fw-bold">
+              Create your first playlist
+            </h3>
+
+            <p class="small mb-3">
+              It's easy, we'll help you
+            </p>
+
+            <button
+              class="btn btn-light rounded-pill fw-bold btn-sm px-3"
+              type="button"
+            >
+              Create playlist
+            </button>
+
+          </div>
+
+
+          <!-- PODCAST CARD -->
+
+          <div class="library-card rounded-3 p-3">
+
+            <h3 class="fs-6 fw-bold">
+              Let's find some podcasts to follow
+            </h3>
+
+            <p class="small mb-3">
+              We'll keep you updated on new episodes
+            </p>
+
+            <button
+              class="btn btn-light rounded-pill fw-bold btn-sm px-3"
+              type="button"
+            >
+              Browse podcasts
+            </button>
+
+          </div>
+
         </div>
 
-        <div
-          class="song-row"
-          id="trendingSongRow"
-        ></div>
+      </aside>
+
+
+      <!-- ================================
+           MAIN CONTENT
+      ================================= -->
+
+      <section class="col-12 col-lg-9 col-xl-10 h-100">
+
+        <div class="spotify-panel h-100 rounded-3 overflow-auto p-3 p-md-4">
+
+
+          <!-- TRENDING SONGS -->
+
+          <section class="mb-5">
+
+            <h2 class="section-title fw-bold mb-3">
+              Trending songs
+            </h2>
+
+            <div
+              id="trendingSongRow"
+              class="d-flex gap-2 gap-md-3 overflow-x-auto pb-3 music-row"
+            ></div>
+
+          </section>
+
+
+          <!-- POPULAR ARTISTS -->
+
+          <section class="mb-5">
+
+            <h2 class="section-title fw-bold mb-3">
+              Popular artists
+            </h2>
+
+            <div
+              id="artistRow"
+              class="d-flex gap-2 gap-md-3 overflow-x-auto pb-3 music-row"
+            ></div>
+
+          </section>
+
+
+          <!-- ALBUMS -->
+
+          <section class="mb-4">
+
+            <h2 class="section-title fw-bold mb-3">
+              Popular albums and singles
+            </h2>
+
+            <div
+              id="albumRow"
+              class="d-flex gap-2 gap-md-3 overflow-x-auto pb-3 music-row"
+            ></div>
+
+          </section>
+
+        </div>
 
       </section>
 
-
-      <!-- ARTISTS -->
-
-      <section class="content-section">
-
-        <div class="section-header">
-          <h2>Popular artists</h2>
-        </div>
-
-        <div
-          class="artist-row"
-          id="artistRow"
-        ></div>
-
-      </section>
-
-
-      <!-- ALBUMS -->
-
-      <section class="content-section">
-
-        <div class="section-header">
-          <h2>Popular albums and singles</h2>
-        </div>
-
-        <div
-          class="song-row"
-          id="albumRow"
-        ></div>
-
-      </section>
-
-    </section>
+    </div>
 
   </main>
 
 
-  <!-- MUSIC PLAYER -->
+  <!-- ================================
+       MUSIC PLAYER
+  ================================= -->
 
-  <div class="music-player">
+  <footer class="music-player flex-shrink-0 border-top border-dark">
 
-    <!-- EMPTY UNTIL SONG SELECTED -->
+    <div class="container-fluid">
 
-    <div
-      class="player-song-info"
-      id="playerSongInfo"
-    ></div>
-
-
-    <!-- CENTER PLAYER -->
-
-    <div class="player-center">
-
-      <div class="player-controls">
-
-        <button
-          class="player-control-btn"
-          id="previousBtn"
-          type="button"
-        >
-          <i class="bi bi-skip-start-fill"></i>
-        </button>
+      <div class="row align-items-center g-2">
 
 
-        <button
-          class="main-play-btn"
-          id="playPauseBtn"
-          type="button"
-        >
-          <i class="bi bi-play-fill"></i>
-        </button>
+        <!-- CURRENT SONG -->
+
+        <div class="col-7 col-md-3">
+
+          <div
+            id="playerSongInfo"
+            class="d-flex align-items-center gap-2 overflow-hidden"
+          ></div>
+
+        </div>
 
 
-        <button
-          class="player-control-btn"
-          id="nextBtn"
-          type="button"
-        >
-          <i class="bi bi-skip-end-fill"></i>
-        </button>
+        <!-- PLAYER -->
+
+        <div class="col-5 col-md-6">
+
+          <div class="d-flex flex-column align-items-center">
+
+
+            <!-- CONTROLS -->
+
+            <div class="d-flex align-items-center justify-content-end justify-content-md-center gap-2 gap-sm-3">
+
+              <button
+                id="previousBtn"
+                class="btn player-icon-btn"
+                type="button"
+              >
+                <i class="bi bi-skip-start-fill"></i>
+              </button>
+
+
+              <button
+                id="playPauseBtn"
+                class="btn btn-light rounded-circle main-play-btn d-flex align-items-center justify-content-center"
+                type="button"
+              >
+                <i class="bi bi-play-fill"></i>
+              </button>
+
+
+              <button
+                id="nextBtn"
+                class="btn player-icon-btn"
+                type="button"
+              >
+                <i class="bi bi-skip-end-fill"></i>
+              </button>
+
+            </div>
+
+
+            <!-- PROGRESS DESKTOP / TABLET -->
+
+            <div class="d-none d-md-flex align-items-center gap-2 w-100 mt-2">
+
+              <span
+                id="currentTime"
+                class="player-time"
+              >
+                0:00
+              </span>
+
+              <input
+                id="progressBar"
+                type="range"
+                class="form-range flex-grow-1 m-0"
+                min="0"
+                max="100"
+                value="0"
+              >
+
+              <span
+                id="duration"
+                class="player-time text-end"
+              >
+                0:00
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- VOLUME DESKTOP -->
+
+        <div class="col-md-3 d-none d-md-block">
+
+          <div class="d-flex align-items-center justify-content-end gap-2">
+
+            <i class="bi bi-volume-up"></i>
+
+            <input
+              id="volumeBar"
+              type="range"
+              class="form-range volume-range m-0"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+            >
+
+          </div>
+
+        </div>
 
       </div>
 
 
-      <!-- PROGRESS -->
+      <!-- MOBILE PROGRESS -->
 
-      <div class="player-progress">
+      <div class="d-flex d-md-none align-items-center gap-2 mt-1">
 
-        <span id="currentTime">
+        <span
+          id="mobileCurrentTime"
+          class="player-time"
+        >
           0:00
         </span>
 
         <input
+          id="mobileProgressBar"
           type="range"
-          id="progressBar"
+          class="form-range flex-grow-1 m-0"
           min="0"
           max="100"
           value="0"
         >
 
-        <span id="duration">
+        <span
+          id="mobileDuration"
+          class="player-time text-end"
+        >
           0:00
         </span>
 
@@ -271,25 +433,7 @@
 
     </div>
 
-
-    <!-- VOLUME -->
-
-    <div class="player-volume">
-
-      <i class="bi bi-volume-up"></i>
-
-      <input
-        type="range"
-        id="volumeBar"
-        min="0"
-        max="1"
-        step="0.01"
-        value="1"
-      >
-
-    </div>
-
-  </div>
+  </footer>
 
 
   <!-- AUDIO -->
@@ -299,6 +443,10 @@
     preload="metadata"
   ></audio>
 
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  ></script>
 
   <script src="./js/app.js"></script>
 

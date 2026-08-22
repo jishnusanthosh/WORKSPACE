@@ -1,388 +1,133 @@
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
+/* ================================
+   GLOBAL
+================================ */
 
 body {
-  background: #000;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  overflow: hidden;
+  min-width: 320px;
 }
 
-button,
-input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
+.spotify-panel {
+  background-color: #121212;
 }
 
 
-/* =====================================================
+/* ================================
    NAVBAR
-===================================================== */
+================================ */
 
-.top-navbar {
-  width: 100%;
-  height: 64px;
-
-  display: grid;
-  grid-template-columns: 220px minmax(300px, 1fr) auto;
-  align-items: center;
-
-  gap: 20px;
-
-  padding: 0 16px;
-
-  background: #000;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo i {
-  font-size: 34px;
-}
-
-.nav-center {
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 10px;
-}
-
-.home-button {
+.home-btn {
   width: 48px;
   height: 48px;
 
-  flex-shrink: 0;
+  background-color: #1f1f1f;
+  color: white;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.home-btn:hover {
+  background-color: #2a2a2a;
+  color: white;
+}
 
-  border: none;
-  border-radius: 50%;
-
-  background: #1f1f1f;
-  color: #fff;
-
-  font-size: 20px;
+.search-wrapper {
+  max-width: 500px;
 }
 
 .search-box {
-  width: 100%;
-  max-width: 500px;
   height: 48px;
 
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 0 18px;
+  background-color: #242424;
 
   border-radius: 30px;
 
-  background: #242424;
-}
-
-.search-box i {
-  flex-shrink: 0;
-
-  color: #b3b3b3;
-
-  font-size: 20px;
-}
-
-.search-box input {
-  width: 100%;
-  min-width: 0;
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-  color: #fff;
-
-  font-size: 15px;
+  overflow: hidden;
 }
 
 .search-box input::placeholder {
   color: #b3b3b3;
 }
 
-.nav-right {
-  display: flex;
-  align-items: center;
+.search-box input {
+  min-width: 0;
+}
 
-  gap: 16px;
+.search-box input:focus {
+  color: white;
+}
 
-  white-space: nowrap;
-
+.nav-link-text {
   color: #b3b3b3;
 
   font-size: 14px;
   font-weight: 600;
-}
 
-.nav-right span {
   cursor: pointer;
 }
 
-.signup-button {
-  border: none;
 
-  background: transparent;
-  color: #b3b3b3;
-
-  font-weight: 700;
-}
-
-.login-button {
-  border: none;
-
-  padding: 12px 25px;
-
-  border-radius: 30px;
-
-  background: #fff;
-  color: #000;
-
-  font-weight: 700;
-}
-
-
-/* =====================================================
-   APP LAYOUT
-===================================================== */
-
-.app-layout {
-  width: 100%;
-
-  height: calc(100dvh - 64px - 90px);
-
-  display: flex;
-
-  gap: 8px;
-
-  padding: 0 8px 8px;
-
-  overflow: hidden;
-}
-
-
-/* =====================================================
+/* ================================
    SIDEBAR
-===================================================== */
+================================ */
 
-.sidebar {
-  width: 340px;
-  min-width: 340px;
-  height: 100%;
-
-  padding: 20px 8px;
-
-  border-radius: 8px;
-
-  background: #121212;
-
-  overflow-y: auto;
+.create-btn {
+  background-color: #1f1f1f;
 }
 
-.library-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 10px;
-
-  padding: 0 12px;
-}
-
-.library-header h2 {
-  margin: 0;
-
-  font-size: 16px;
-  font-weight: 700;
-
-  white-space: nowrap;
-}
-
-.create-button {
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 7px;
-
-  border: none;
-
-  padding: 8px 14px;
-
-  border-radius: 25px;
-
-  background: #1f1f1f;
-  color: #fff;
-
-  font-size: 14px;
-  font-weight: 600;
+.create-btn:hover {
+  background-color: #292929;
 }
 
 .library-card {
-  margin-top: 25px;
-
-  padding: 18px;
-
-  border-radius: 8px;
-
-  background: #1f1f1f;
-}
-
-.library-card h3 {
-  margin-bottom: 10px;
-
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-.library-card p {
-  margin-bottom: 18px;
-
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.library-card button {
-  border: none;
-
-  padding: 9px 16px;
-
-  border-radius: 25px;
-
-  background: #fff;
-  color: #000;
-
-  font-size: 14px;
-  font-weight: 700;
+  background-color: #1f1f1f;
 }
 
 
-/* =====================================================
-   MAIN CONTENT
-===================================================== */
+/* ================================
+   SECTIONS
+================================ */
 
-.main-content {
-  flex: 1;
-
-  min-width: 0;
-  height: 100%;
-
-  padding: 25px;
-
-  border-radius: 8px;
-
-  background: #121212;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-
-  scrollbar-width: thin;
-  scrollbar-color: #555 transparent;
-}
-
-.content-section {
-  width: 100%;
-
-  margin-bottom: 45px;
-}
-
-.section-header {
-  margin-bottom: 18px;
-}
-
-.section-header h2 {
-  margin: 0;
-
+.section-title {
   font-size: 24px;
-  font-weight: 700;
 }
 
 
-/* =====================================================
+/* ================================
    HORIZONTAL ROWS
-===================================================== */
+================================ */
 
-.song-row,
-.artist-row {
-  width: 100%;
-
-  display: flex;
-
-  gap: 18px;
-
-  padding-bottom: 10px;
-
-  overflow-x: auto;
-  overflow-y: hidden;
-
+.music-row {
   scrollbar-width: thin;
-  scrollbar-color: #555 transparent;
-
-  scroll-behavior: smooth;
-
-  -webkit-overflow-scrolling: touch;
+  scrollbar-color: #4a4a4a transparent;
 }
 
-.song-row::-webkit-scrollbar,
-.artist-row::-webkit-scrollbar {
+.music-row::-webkit-scrollbar {
   height: 6px;
 }
 
-.song-row::-webkit-scrollbar-thumb,
-.artist-row::-webkit-scrollbar-thumb {
-  background: #555;
+.music-row::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a;
 
   border-radius: 20px;
 }
 
 
-/* =====================================================
+/* ================================
    SONG CARD
-===================================================== */
+================================ */
 
 .song-card {
-  width: 170px;
-  min-width: 170px;
+  flex: 0 0 170px;
 
-  padding: 10px;
+  width: 170px;
+
+  padding: 8px;
 
   border-radius: 8px;
 
-  transition: background 0.2s ease;
+  cursor: pointer;
 }
 
 .song-card:hover {
-  background: #1f1f1f;
+  background-color: #1f1f1f;
 }
 
 .song-image-wrapper {
@@ -391,15 +136,11 @@ button {
   width: 100%;
 
   aspect-ratio: 1 / 1;
-
-  margin-bottom: 12px;
 }
 
 .song-image {
   width: 100%;
   height: 100%;
-
-  display: block;
 
   object-fit: cover;
 
@@ -407,7 +148,10 @@ button {
 }
 
 .song-card h3 {
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+
+  color: white;
 
   font-size: 15px;
   font-weight: 600;
@@ -430,64 +174,58 @@ button {
 }
 
 
-/* =====================================================
-   CARD PLAY BUTTON
-===================================================== */
+/* ================================
+   PLAY BUTTON
+================================ */
 
 .card-play-btn {
   position: absolute;
 
-  right: 10px;
-  bottom: 10px;
+  right: 8px;
+  bottom: 8px;
 
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   border: none;
+
   border-radius: 50%;
 
-  background: #1ed760;
-  color: #000;
+  background-color: #1ed760;
+  color: black;
 
-  font-size: 24px;
+  font-size: 22px;
 
   opacity: 0;
-
-  transform: translateY(6px);
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
 }
 
 .song-card:hover .card-play-btn {
   opacity: 1;
-
-  transform: translateY(0);
 }
 
 
-/* =====================================================
-   ARTIST CARD
-===================================================== */
+/* ================================
+   ARTIST
+================================ */
 
 .artist-card {
-  width: 170px;
-  min-width: 170px;
+  flex: 0 0 170px;
 
-  padding: 10px;
+  width: 170px;
+
+  padding: 8px;
 
   border-radius: 8px;
 
-  transition: background 0.2s ease;
+  cursor: pointer;
 }
 
 .artist-card:hover {
-  background: #1f1f1f;
+  background-color: #1f1f1f;
 }
 
 .artist-image {
@@ -495,17 +233,16 @@ button {
 
   aspect-ratio: 1 / 1;
 
-  display: block;
-
   object-fit: cover;
 
   border-radius: 50%;
-
-  margin-bottom: 12px;
 }
 
 .artist-card h3 {
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+
+  color: white;
 
   font-size: 15px;
   font-weight: 600;
@@ -524,44 +261,16 @@ button {
 }
 
 
-/* =====================================================
-   MUSIC PLAYER
-===================================================== */
+/* ================================
+   PLAYER
+================================ */
 
 .music-player {
-  width: 100%;
-  height: 90px;
+  min-height: 90px;
 
-  display: grid;
+  padding: 10px 8px;
 
-  grid-template-columns:
-    minmax(200px, 1fr)
-    minmax(320px, 2fr)
-    minmax(150px, 1fr);
-
-  align-items: center;
-
-  gap: 20px;
-
-  padding: 0 18px;
-
-  background: #000;
-
-  border-top: 1px solid #282828;
-}
-
-
-/* =====================================================
-   CURRENT SONG
-===================================================== */
-
-.player-song-info {
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
+  background-color: #000;
 }
 
 .player-song-image {
@@ -572,7 +281,7 @@ button {
 
   object-fit: cover;
 
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .player-song-text {
@@ -580,10 +289,9 @@ button {
 }
 
 .player-song-text h4 {
-  margin: 0 0 4px;
+  margin: 0 0 3px;
 
   font-size: 14px;
-  font-weight: 500;
 
   white-space: nowrap;
   overflow: hidden;
@@ -602,563 +310,82 @@ button {
   text-overflow: ellipsis;
 }
 
-
-/* =====================================================
-   PLAYER CENTER
-===================================================== */
-
-.player-center {
-  width: 100%;
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  gap: 8px;
-}
-
-.player-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 20px;
-}
-
-.player-control-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.player-icon-btn {
+  padding: 4px;
 
   border: none;
 
-  padding: 0;
-
-  background: transparent;
   color: #b3b3b3;
 
   font-size: 20px;
-
-  transition: color 0.2s ease;
 }
 
-.player-control-btn:hover {
-  color: #fff;
+.player-icon-btn:hover {
+  color: white;
 }
 
 .main-play-btn {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
 
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: none;
-  border-radius: 50%;
-
-  background: #fff;
-  color: #000;
+  padding: 0;
 
   font-size: 22px;
 }
 
-
-/* =====================================================
-   PROGRESS
-===================================================== */
-
-.player-progress {
-  width: 100%;
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-}
-
-.player-progress span {
-  width: 38px;
+.player-time {
+  width: 34px;
 
   flex-shrink: 0;
 
   color: #b3b3b3;
 
-  font-size: 11px;
+  font-size: 10px;
 }
 
-.player-progress span:last-child {
-  text-align: right;
+.volume-range {
+  max-width: 110px;
 }
 
-#progressBar {
-  flex: 1;
-
-  width: 100%;
-  min-width: 0;
-
-  height: 4px;
-
-  cursor: pointer;
-
+.form-range {
   accent-color: #1ed760;
 }
 
 
-/* =====================================================
-   VOLUME
-===================================================== */
-
-.player-volume {
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  gap: 10px;
-}
-
-.player-volume i {
-  flex-shrink: 0;
-
-  font-size: 18px;
-}
-
-#volumeBar {
-  width: 110px;
-  max-width: 100%;
-
-  height: 4px;
-
-  cursor: pointer;
-
-  accent-color: #1ed760;
-}
-
-/* =====================================================
-   RESPONSIVE FIX
-   Put this at the VERY END of style.css
-===================================================== */
-
-
-/* =========================
-   DESKTOP / TABLET
-========================= */
-
-@media (max-width: 1100px) {
-
-  .sidebar {
-    width: 260px;
-    min-width: 260px;
-  }
-
-  .nav-right span {
-    display: none;
-  }
-
-  .music-player {
-    grid-template-columns:
-      minmax(170px, 1fr)
-      minmax(280px, 2fr);
-  }
-
-  .player-volume {
-    display: none;
-  }
-}
-
-
-/* =========================
+/* ================================
    TABLET
-========================= */
+================================ */
 
-@media (max-width: 850px) {
+@media (max-width: 991.98px) {
 
-  /* NAVBAR */
-
-  .top-navbar {
-    height: 60px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 6px 12px;
-  }
-
-  .logo {
-    width: auto;
-    flex-shrink: 0;
-  }
-
-  .logo i {
-    font-size: 32px;
-  }
-
-  .nav-center {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .search-box {
-    width: 100%;
-    max-width: none;
-  }
-
-  .nav-right {
-    display: none;
-  }
-
-
-  /* MAIN */
-
-  .app-layout {
-    height: calc(100dvh - 60px - 90px);
-
-    padding: 0 6px 6px;
-  }
-
-  .sidebar {
-    display: none;
-  }
-
-  .main-content {
-    width: 100%;
-    min-width: 0;
-
-    padding: 20px 16px;
-  }
-
-
-  /* CARDS */
-
-  .song-row,
-  .artist-row {
-    width: 100%;
-
-    display: flex;
-
-    gap: 12px;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    scroll-snap-type: x proximity;
+  .section-title {
+    font-size: 22px;
   }
 
   .song-card,
   .artist-card {
-    width: 150px;
-    min-width: 150px;
+    flex-basis: 155px;
 
-    scroll-snap-align: start;
-  }
-
-
-  /* PLAYER */
-
-  .music-player {
-    width: 100%;
-    height: 90px;
-
-    display: grid;
-
-    grid-template-columns:
-      minmax(0, 1fr)
-      auto;
-
-    grid-template-rows:
-      52px
-      25px;
-
-    column-gap: 12px;
-    row-gap: 0;
-
-    padding: 6px 12px;
-
-    overflow: hidden;
-  }
-
-
-  /* SONG INFO */
-
-  .player-song-info {
-    grid-column: 1;
-    grid-row: 1;
-
-    width: 100%;
-    min-width: 0;
-
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    overflow: hidden;
-  }
-
-  .player-song-image {
-    width: 44px;
-    height: 44px;
-
-    min-width: 44px;
-
-    object-fit: cover;
-
-    border-radius: 4px;
-  }
-
-  .player-song-text {
-    flex: 1;
-
-    min-width: 0;
-
-    overflow: hidden;
-  }
-
-  .player-song-text h4 {
-    margin: 0 0 3px;
-
-    font-size: 13px;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .player-song-text p {
-    margin: 0;
-
-    font-size: 11px;
-
-    color: #b3b3b3;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-
-  /* CENTER PLAYER */
-
-  .player-center {
-    display: contents;
-  }
-
-
-  /* CONTROLS */
-
-  .player-controls {
-    grid-column: 2;
-    grid-row: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    gap: 12px;
-
-    width: auto;
-  }
-
-  .player-control-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    font-size: 20px;
-  }
-
-  .main-play-btn {
-    width: 38px;
-    height: 38px;
-
-    min-width: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    font-size: 23px;
-  }
-
-
-  /* PROGRESS */
-
-  .player-progress {
-    grid-column: 1 / -1;
-    grid-row: 2;
-
-    width: 100%;
-    min-width: 0;
-
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-  }
-
-  .player-progress span {
-    width: 32px;
-    min-width: 32px;
-
-    font-size: 10px;
-  }
-
-  #progressBar {
-    flex: 1;
-
-    width: auto;
-    min-width: 0;
-
-    margin: 0;
-  }
-
-
-  /* VOLUME */
-
-  .player-volume {
-    display: none;
+    width: 155px;
   }
 }
 
 
-/* =========================
+/* ================================
    MOBILE
-========================= */
+================================ */
 
-@media (max-width: 600px) {
-
-  /* NAV */
-
-  .top-navbar {
-    height: 56px;
-
-    gap: 8px;
-
-    padding: 6px 10px;
-  }
-
-  .logo i {
-    font-size: 29px;
-  }
-
-  .home-button {
-    display: none;
-  }
-
-  .search-box {
-    height: 42px;
-
-    padding: 0 14px;
-  }
-
-  .search-box i {
-    font-size: 18px;
-  }
-
-  .search-box input {
-    font-size: 14px;
-  }
-
-
-  /* CONTENT */
-
-  .app-layout {
-    height: calc(100dvh - 56px - 86px);
-
-    padding: 0 5px 5px;
-  }
-
-  .main-content {
-    padding: 16px 10px;
-  }
-
-  .content-section {
-    margin-bottom: 32px;
-  }
-
-  .section-header {
-    margin-bottom: 12px;
-  }
-
-  .section-header h2 {
-    font-size: 20px;
-    line-height: 1.2;
-  }
-
-
-  /* CARDS */
-
-  .song-row,
-  .artist-row {
-    gap: 8px;
-
-    padding-bottom: 8px;
-  }
-
-  .song-card,
-  .artist-card {
-    width: 135px;
-    min-width: 135px;
-
-    padding: 6px;
-  }
-
-  .song-card h3,
-  .artist-card h3 {
-    font-size: 13px;
-  }
-
-  .song-card p,
-  .artist-card p {
-    font-size: 11px;
-  }
-
-  .card-play-btn {
-    width: 38px;
-    height: 38px;
-
-    opacity: 1;
-
-    transform: none;
-
-    font-size: 20px;
-  }
-
-
-  /* PLAYER */
+@media (max-width: 767.98px) {
 
   .music-player {
-    height: 86px;
+    min-height: 92px;
 
-    grid-template-columns:
-      minmax(0, 1fr)
-      auto;
-
-    grid-template-rows:
-      54px
-      24px;
-
-    padding: 4px 10px;
+    padding: 7px 8px;
   }
 
   .player-song-image {
-    width: 42px;
-    height: 42px;
-
-    min-width: 42px;
+    width: 46px;
+    height: 46px;
   }
 
   .player-song-text h4 {
@@ -1169,91 +396,48 @@ button {
     font-size: 10px;
   }
 
-  .player-controls {
-    gap: 9px;
+  .song-card,
+  .artist-card {
+    flex-basis: 140px;
+
+    width: 140px;
   }
 
-  .player-control-btn {
-    font-size: 18px;
+  .card-play-btn {
+    width: 38px;
+    height: 38px;
+
+    opacity: 1;
+
+    font-size: 19px;
   }
 
-  .main-play-btn {
-    width: 36px;
-    height: 36px;
-
-    min-width: 36px;
-
-    font-size: 21px;
-  }
-
-  .player-progress {
-    gap: 5px;
-  }
-
-  .player-progress span {
-    width: 29px;
-    min-width: 29px;
-
-    font-size: 9px;
+  .section-title {
+    font-size: 20px;
   }
 }
 
 
-/* =========================
+/* ================================
    SMALL MOBILE
-========================= */
+================================ */
 
-@media (max-width: 420px) {
-
-  .top-navbar {
-    padding: 6px 8px;
-  }
-
-  .logo i {
-    font-size: 27px;
-  }
-
-  .search-box {
-    padding: 0 11px;
-  }
-
-  .search-box input {
-    font-size: 13px;
-  }
-
-  .main-content {
-    padding: 14px 8px;
-  }
-
-  .section-header h2 {
-    font-size: 18px;
-  }
+@media (max-width: 480px) {
 
   .song-card,
   .artist-card {
+    flex-basis: 125px;
+
     width: 125px;
-    min-width: 125px;
   }
 
-
-  /* PLAYER */
-
-  .music-player {
-    padding-left: 8px;
-    padding-right: 8px;
-
-    column-gap: 6px;
-  }
-
-  .player-song-info {
-    gap: 7px;
+  .section-title {
+    font-size: 18px;
   }
 
   .player-song-image {
-    width: 40px;
-    height: 40px;
-
-    min-width: 40px;
+    width: 42px;
+    height: 42px;
   }
 
   .player-song-text h4 {
@@ -1264,54 +448,26 @@ button {
     font-size: 9px;
   }
 
-  .player-controls {
-    gap: 5px;
-  }
-
-  .player-control-btn {
-    font-size: 16px;
+  .player-icon-btn {
+    font-size: 17px;
   }
 
   .main-play-btn {
     width: 34px;
     height: 34px;
 
-    min-width: 34px;
-
     font-size: 20px;
   }
 }
 
 
-/* =========================
-   VERY SMALL MOBILE
-========================= */
+/* ================================
+   TOUCH DEVICES
+================================ */
 
-@media (max-width: 350px) {
+@media (hover: none) {
 
-  .player-song-image {
-    width: 36px;
-    height: 36px;
-
-    min-width: 36px;
-  }
-
-  .player-song-text p {
-    display: none;
-  }
-
-  .player-controls {
-    gap: 3px;
-  }
-
-  .player-control-btn {
-    font-size: 15px;
-  }
-
-  .main-play-btn {
-    width: 32px;
-    height: 32px;
-
-    min-width: 32px;
+  .card-play-btn {
+    opacity: 1;
   }
 }
