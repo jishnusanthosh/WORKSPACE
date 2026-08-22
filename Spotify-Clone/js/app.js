@@ -1,11 +1,18 @@
-// ======================================================
-// DOM ELEMENTS
-// ======================================================
+// ===============================
+// DOM
+// ===============================
 
-const audioPlayer = document.getElementById("audioPlayer");
+const audioPlayer =
+  document.getElementById("audioPlayer");
 
 const playPauseBtn =
   document.getElementById("playPauseBtn");
+
+const previousBtn =
+  document.getElementById("previousBtn");
+
+const nextBtn =
+  document.getElementById("nextBtn");
 
 const progressBar =
   document.getElementById("progressBar");
@@ -19,20 +26,8 @@ const durationElement =
 const volumeBar =
   document.getElementById("volumeBar");
 
-const nextBtn =
-  document.getElementById("nextBtn");
-
-const previousBtn =
-  document.getElementById("previousBtn");
-
-const currentSongTitle =
-  document.getElementById("currentSongTitle");
-
-const currentSongArtist =
-  document.getElementById("currentSongArtist");
-
-const currentSongImage =
-  document.getElementById("currentSongImage");
+const playerSongInfo =
+  document.getElementById("playerSongInfo");
 
 const trendingSongRow =
   document.getElementById("trendingSongRow");
@@ -44,9 +39,9 @@ const albumRow =
   document.getElementById("albumRow");
 
 
-// ======================================================
+// ===============================
 // JAMENDO API
-// ======================================================
+// ===============================
 
 const JAMENDO_CLIENT_ID = "eaa3a634";
 
@@ -54,69 +49,61 @@ const JAMENDO_API =
   "https://api.jamendo.com/v3.0/tracks/";
 
 
-// ======================================================
-// APPLICATION STATE
-// ======================================================
+// ===============================
+// STATE
+// ===============================
 
 let songs = [];
 
-let currentSongIndex = 0;
+let currentSongIndex = -1;
 
 
-// ======================================================
-// FETCH DATA
-// ======================================================
+// ===============================
+// FETCH MUSIC
+// ===============================
 
 async function fetchMusic() {
+
   try {
-    trendingSongRow.innerHTML = `
-      <p class="text-secondary">
-        Loading songs...
-      </p>
-    `;
 
-    artistRow.innerHTML = `
-      <p class="text-secondary">
-        Loading artists...
-      </p>
-    `;
+    trendingSongRow.innerHTML =
+      "<p>Loading songs...</p>";
 
-    albumRow.innerHTML = `
-      <p class="text-secondary">
-        Loading albums...
-      </p>
-    `;
+    artistRow.innerHTML =
+      "<p>Loading artists...</p>";
+
+    albumRow.innerHTML =
+      "<p>Loading albums...</p>";
 
 
-    const apiURL =
-      `${JAMENDO_API}?client_id=${JAMENDO_CLIENT_ID}` +
+    const url =
+      `${JAMENDO_API}` +
+      `?client_id=${JAMENDO_CLIENT_ID}` +
       `&format=json` +
       `&limit=30` +
       `&audioformat=mp32` +
       `&order=popularity_total`;
 
 
-    const response = await fetch(apiURL);
+    const response =
+      await fetch(url);
 
 
     if (!response.ok) {
+
       throw new Error(
         `HTTP Error: ${response.status}`
       );
+
     }
 
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
 
-    if (!data.results) {
-      throw new Error(
-        "No music data received."
-      );
-    }
-
-
-    songs = data.results;
+    songs =
+      data.results || [];
 
 
     renderSongs();
@@ -126,63 +113,57 @@ async function fetchMusic() {
     renderAlbums();
 
   } catch (error) {
+
     console.error(
-      "Jamendo API Error:",
+      "API Error:",
       error
     );
 
 
-    trendingSongRow.innerHTML = `
-      <p class="text-danger">
-        Unable to load songs.
-      </p>
-    `;
+    trendingSongRow.innerHTML =
+      "<p>Unable to load songs.</p>";
 
+    artistRow.innerHTML =
+      "<p>Unable to load artists.</p>";
 
-    artistRow.innerHTML = `
-      <p class="text-danger">
-        Unable to load artists.
-      </p>
-    `;
+    albumRow.innerHTML =
+      "<p>Unable to load albums.</p>";
 
-
-    albumRow.innerHTML = `
-      <p class="text-danger">
-        Unable to load albums.
-      </p>
-    `;
   }
+
 }
 
 
-// ======================================================
-// RENDER TRENDING SONGS
-// ======================================================
+// ===============================
+// RENDER SONGS
+// ===============================
 
 function renderSongs() {
+
   trendingSongRow.innerHTML = "";
 
 
-  songs.slice(0, 10).forEach(
-    function (song, index) {
+  songs
+    .slice(0, 10)
+    .forEach(function (song, index) {
 
-      const songCard =
+      const card =
         document.createElement("article");
 
 
-      songCard.classList.add(
-        "song-card"
-      );
+      card.className =
+        "song-card";
 
 
-      songCard.innerHTML = `
+      card.innerHTML = `
+
         <div class="song-image-wrapper">
 
           <img
             src="${song.image}"
             alt="${song.name}"
             class="song-image"
-          />
+          >
 
           <button
             class="card-play-btn"
@@ -200,10 +181,11 @@ function renderSongs() {
         <p>
           ${song.artist_name}
         </p>
+
       `;
 
 
-      songCard.addEventListener(
+      card.addEventListener(
         "click",
         function () {
 
@@ -214,28 +196,30 @@ function renderSongs() {
 
 
       trendingSongRow.appendChild(
-        songCard
+        card
       );
-    }
-  );
+
+    });
+
 }
 
 
-// ======================================================
+// ===============================
 // RENDER ARTISTS
-// ======================================================
+// ===============================
 
 function renderArtists() {
+
   artistRow.innerHTML = "";
 
 
-  const uniqueArtists = [];
+  const artists = [];
 
 
   songs.forEach(function (song) {
 
-    const alreadyExists =
-      uniqueArtists.some(
+    const exists =
+      artists.some(
         function (artist) {
 
           return (
@@ -247,11 +231,16 @@ function renderArtists() {
       );
 
 
-    if (!alreadyExists) {
+    if (!exists) {
 
-      uniqueArtists.push({
-        name: song.artist_name,
-        image: song.image
+      artists.push({
+
+        name:
+          song.artist_name,
+
+        image:
+          song.image
+
       });
 
     }
@@ -259,25 +248,25 @@ function renderArtists() {
   });
 
 
-  uniqueArtists
+  artists
     .slice(0, 10)
     .forEach(function (artist) {
 
-      const artistCard =
+      const card =
         document.createElement("article");
 
 
-      artistCard.classList.add(
-        "artist-card"
-      );
+      card.className =
+        "artist-card";
 
 
-      artistCard.innerHTML = `
+      card.innerHTML = `
+
         <img
           src="${artist.image}"
           alt="${artist.name}"
           class="artist-image"
-        />
+        >
 
         <h3>
           ${artist.name}
@@ -286,26 +275,29 @@ function renderArtists() {
         <p>
           Artist
         </p>
+
       `;
 
 
       artistRow.appendChild(
-        artistCard
+        card
       );
 
     });
+
 }
 
 
-// ======================================================
+// ===============================
 // RENDER ALBUMS
-// ======================================================
+// ===============================
 
 function renderAlbums() {
+
   albumRow.innerHTML = "";
 
 
-  const uniqueAlbums = [];
+  const albums = [];
 
 
   songs.forEach(function (song) {
@@ -315,8 +307,8 @@ function renderAlbums() {
     }
 
 
-    const alreadyExists =
-      uniqueAlbums.some(
+    const exists =
+      albums.some(
         function (album) {
 
           return (
@@ -328,12 +320,20 @@ function renderAlbums() {
       );
 
 
-    if (!alreadyExists) {
+    if (!exists) {
 
-      uniqueAlbums.push({
-        name: song.album_name,
-        artist: song.artist_name,
-        image: song.album_image || song.image
+      albums.push({
+
+        name:
+          song.album_name,
+
+        artist:
+          song.artist_name,
+
+        image:
+          song.album_image ||
+          song.image
+
       });
 
     }
@@ -341,27 +341,27 @@ function renderAlbums() {
   });
 
 
-  uniqueAlbums
+  albums
     .slice(0, 10)
     .forEach(function (album) {
 
-      const albumCard =
+      const card =
         document.createElement("article");
 
 
-      albumCard.classList.add(
-        "song-card"
-      );
+      card.className =
+        "song-card";
 
 
-      albumCard.innerHTML = `
+      card.innerHTML = `
+
         <div class="song-image-wrapper">
 
           <img
             src="${album.image}"
             alt="${album.name}"
             class="song-image"
-          />
+          >
 
         </div>
 
@@ -372,20 +372,22 @@ function renderAlbums() {
         <p>
           ${album.artist}
         </p>
+
       `;
 
 
       albumRow.appendChild(
-        albumCard
+        card
       );
 
     });
+
 }
 
 
-// ======================================================
+// ===============================
 // PLAY SONG
-// ======================================================
+// ===============================
 
 function playSong(index) {
 
@@ -394,33 +396,47 @@ function playSong(index) {
   }
 
 
-  currentSongIndex = index;
+  currentSongIndex =
+    index;
 
 
   const song =
     songs[currentSongIndex];
 
 
+  playerSongInfo.innerHTML = `
+
+    <img
+      src="${song.image}"
+      alt="${song.name}"
+      class="player-song-image"
+    >
+
+    <div class="player-song-text">
+
+      <h4>
+        ${song.name}
+      </h4>
+
+      <p>
+        ${song.artist_name}
+      </p>
+
+    </div>
+
+  `;
+
+
   audioPlayer.src =
     song.audio;
 
 
-  currentSongTitle.textContent =
-    song.name;
-
-
-  currentSongArtist.textContent =
-    song.artist_name;
-
-
-  currentSongImage.src =
-    song.image;
-
-
   progressBar.value = 0;
 
-
   currentTimeElement.textContent =
+    "0:00";
+
+  durationElement.textContent =
     "0:00";
 
 
@@ -429,31 +445,31 @@ function playSong(index) {
     .catch(function (error) {
 
       console.error(
-        "Playback error:",
+        "Playback Error:",
         error
       );
 
     });
+
 }
 
 
-// ======================================================
+// ===============================
 // PLAY / PAUSE
-// ======================================================
+// ===============================
 
 function togglePlayPause() {
 
-  if (!audioPlayer.src) {
+  if (currentSongIndex === -1) {
 
     if (songs.length > 0) {
 
-      playSong(
-        currentSongIndex
-      );
+      playSong(0);
 
     }
 
     return;
+
   }
 
 
@@ -466,6 +482,7 @@ function togglePlayPause() {
     audioPlayer.pause();
 
   }
+
 }
 
 
@@ -475,46 +492,49 @@ playPauseBtn.addEventListener(
 );
 
 
-// ======================================================
-// PLAY / PAUSE ICON
-// ======================================================
+// ===============================
+// PLAY ICON
+// ===============================
 
-function updatePlayPauseIcon() {
-
-  if (audioPlayer.paused) {
-
-    playPauseBtn.innerHTML =
-      '<i class="bi bi-play-fill"></i>';
-
-  } else {
+audioPlayer.addEventListener(
+  "play",
+  function () {
 
     playPauseBtn.innerHTML =
       '<i class="bi bi-pause-fill"></i>';
 
   }
-}
-
-
-audioPlayer.addEventListener(
-  "play",
-  updatePlayPauseIcon
 );
 
 
 audioPlayer.addEventListener(
   "pause",
-  updatePlayPauseIcon
+  function () {
+
+    playPauseBtn.innerHTML =
+      '<i class="bi bi-play-fill"></i>';
+
+  }
 );
 
 
-// ======================================================
-// NEXT SONG
-// ======================================================
+// ===============================
+// NEXT
+// ===============================
 
 function playNextSong() {
 
   if (songs.length === 0) {
     return;
+  }
+
+
+  if (currentSongIndex === -1) {
+
+    playSong(0);
+
+    return;
+
   }
 
 
@@ -534,6 +554,7 @@ function playNextSong() {
   playSong(
     currentSongIndex
   );
+
 }
 
 
@@ -543,9 +564,9 @@ nextBtn.addEventListener(
 );
 
 
-// ======================================================
-// PREVIOUS SONG
-// ======================================================
+// ===============================
+// PREVIOUS
+// ===============================
 
 function playPreviousSong() {
 
@@ -554,10 +575,21 @@ function playPreviousSong() {
   }
 
 
+  if (currentSongIndex === -1) {
+
+    playSong(0);
+
+    return;
+
+  }
+
+
   currentSongIndex--;
 
 
-  if (currentSongIndex < 0) {
+  if (
+    currentSongIndex < 0
+  ) {
 
     currentSongIndex =
       songs.length - 1;
@@ -568,6 +600,7 @@ function playPreviousSong() {
   playSong(
     currentSongIndex
   );
+
 }
 
 
@@ -577,13 +610,15 @@ previousBtn.addEventListener(
 );
 
 
-// ======================================================
+// ===============================
 // FORMAT TIME
-// ======================================================
+// ===============================
 
 function formatTime(seconds) {
 
-  if (!Number.isFinite(seconds)) {
+  if (
+    !Number.isFinite(seconds)
+  ) {
 
     return "0:00";
 
@@ -610,12 +645,13 @@ function formatTime(seconds) {
   return (
     `${minutes}:${remainingSeconds}`
   );
+
 }
 
 
-// ======================================================
-// SONG DURATION
-// ======================================================
+// ===============================
+// DURATION
+// ===============================
 
 audioPlayer.addEventListener(
   "loadedmetadata",
@@ -630,9 +666,9 @@ audioPlayer.addEventListener(
 );
 
 
-// ======================================================
-// PROGRESS
-// ======================================================
+// ===============================
+// PROGRESS UPDATE
+// ===============================
 
 audioPlayer.addEventListener(
   "timeupdate",
@@ -653,8 +689,7 @@ audioPlayer.addEventListener(
       (
         audioPlayer.currentTime /
         audioPlayer.duration
-      ) *
-      100;
+      ) * 100;
 
 
     progressBar.value =
@@ -676,9 +711,9 @@ audioPlayer.addEventListener(
 );
 
 
-// ======================================================
+// ===============================
 // SEEK
-// ======================================================
+// ===============================
 
 progressBar.addEventListener(
   "input",
@@ -695,12 +730,15 @@ progressBar.addEventListener(
     }
 
 
+    const percentage =
+      Number(
+        progressBar.value
+      );
+
+
     audioPlayer.currentTime =
       (
-        Number(
-          progressBar.value
-        ) /
-        100
+        percentage / 100
       ) *
       audioPlayer.duration;
 
@@ -708,9 +746,9 @@ progressBar.addEventListener(
 );
 
 
-// ======================================================
+// ===============================
 // VOLUME
-// ======================================================
+// ===============================
 
 audioPlayer.volume =
   Number(
@@ -731,9 +769,9 @@ volumeBar.addEventListener(
 );
 
 
-// ======================================================
+// ===============================
 // AUTO NEXT
-// ======================================================
+// ===============================
 
 audioPlayer.addEventListener(
   "ended",
@@ -741,8 +779,8 @@ audioPlayer.addEventListener(
 );
 
 
-// ======================================================
+// ===============================
 // START
-// ======================================================
+// ===============================
 
 fetchMusic();
