@@ -12,7 +12,7 @@ const route = express.Router();
 
 route.post("/user", create);
 route.get("/users", getAllusers);
-route.ger("/user/:id", gerUserByid);
+route.get("/user/:id", gerUserByid);
 route.put("/update/user/:id", update);
 route.delete("/delete/user/:id", deleteUser);
 

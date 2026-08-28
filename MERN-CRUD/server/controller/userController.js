@@ -1,6 +1,6 @@
 import { stat } from "node:fs";
 import User from "../model/userModel.js";
-import { rawListeners } from "node:cluster";
+
 
 export const create = async (req, res) => {
   try {

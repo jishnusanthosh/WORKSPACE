@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import dns from "node:dns";
 import route from "./routes/userRoute.js"
+import cors from 'cors'
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
@@ -12,6 +13,7 @@ dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 const PORT = process.env.PORT || 7000;
 const MONGO_URL = process.env.MONGO_URL;
