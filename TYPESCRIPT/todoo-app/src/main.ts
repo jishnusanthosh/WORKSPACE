@@ -1,40 +1,33 @@
-import "./style.css"
+import "./style.css";
 
 type Task = {
-  id: string
-  title: string
-  completed: boolean
-  createdAt: Date
-}
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: Date;
+};
 
-const list =
-  document.querySelector<HTMLUListElement>("#list")
+const list = document.querySelector<HTMLUListElement>("#list");
 
-const form =
-  document.querySelector<HTMLFormElement>(
-    "#new-task-form"
-  )
+const form = document.querySelector<HTMLFormElement>("#new-task-form");
 
-const input =
-  document.querySelector<HTMLInputElement>(
-    "#new-task-title"
-  )
+const input = document.querySelector<HTMLInputElement>("#new-task-title");
 
-const tasks: Task[] = loadTasks()
+const tasks: Task[] = loadTasks();
 
-tasks.forEach(addListItem)
+tasks.forEach(addListItem);
 
 form?.addEventListener("submit", (event) => {
-  event.preventDefault()
+  event.preventDefault();
 
   if (!input) {
-    return
+    return;
   }
 
-  const title = input.value.trim()
+  const title = input.value.trim();
 
   if (title === "") {
-    return
+    return;
   }
 
   const newTask: Task = {
@@ -42,156 +35,106 @@ form?.addEventListener("submit", (event) => {
     title,
     completed: false,
     createdAt: new Date(),
-  }
+  };
 
-  tasks.push(newTask)
+  tasks.push(newTask);
 
-  addListItem(newTask)
+  addListItem(newTask);
 
-  saveTasks()
+  saveTasks();
 
-  input.value = ""
-})
+  input.value = "";
+});
 
 function addListItem(task: Task): void {
-  const item =
-    document.createElement("li")
+  const item = document.createElement("li");
 
-  const label =
-    document.createElement("label")
+  const label = document.createElement("label");
 
-  const checkbox =
-    document.createElement("input")
+  const checkbox = document.createElement("input");
 
-  const deleteButton =
-    document.createElement("button")
+  const deleteButton = document.createElement("button");
 
-  checkbox.type = "checkbox"
+  checkbox.type = "checkbox";
 
-  checkbox.checked =
-    task.completed
+  checkbox.checked = task.completed;
 
-  checkbox.addEventListener(
-    "change",
-    () => {
-      task.completed =
-        checkbox.checked
+  checkbox.addEventListener("change", () => {
+    task.completed = checkbox.checked;
 
-      saveTasks()
-    }
-  )
+    saveTasks();
+  });
 
-  const taskText =
-    document.createElement("span")
+  const taskText = document.createElement("span");
 
-  taskText.textContent =
-    task.title
+  taskText.textContent = task.title;
 
-  deleteButton.textContent =
-    "Delete"
+  deleteButton.textContent = "Delete";
 
-  deleteButton.type =
-    "button"
+  deleteButton.type = "button";
 
-  deleteButton.addEventListener(
-    "click",
-    () => {
-      deleteTask(task.id)
-    }
-  )
+  deleteButton.addEventListener("click", () => {
+    deleteTask(task.id);
+  });
 
-  label.append(
-    checkbox,
-    taskText
-  )
+  label.append(checkbox, taskText);
 
-  item.append(
-    label,
-    deleteButton
-  )
+  item.append(label, deleteButton);
 
-  list?.append(item)
+  list?.append(item);
 }
 
-function deleteTask(
-  taskId: string
-): void {
-  const taskIndex =
-    tasks.findIndex(
-      (task) =>
-        task.id === taskId
-    )
+function deleteTask(taskId: string): void {
+  const taskIndex = tasks.findIndex((task) => task.id === taskId);
 
   if (taskIndex === -1) {
-    return
+    return;
   }
 
-  tasks.splice(
-    taskIndex,
-    1
-  )
+  tasks.splice(taskIndex, 1);
 
-  saveTasks()
+  saveTasks();
 
-  renderTasks()
+  renderTasks();
 }
 
 function renderTasks(): void {
   if (!list) {
-    return
+    return;
   }
 
-  list.innerHTML = ""
+  list.innerHTML = "";
 
-  tasks.forEach(
-    addListItem
-  )
+  tasks.forEach(addListItem);
 }
 
 function saveTasks(): void {
-  localStorage.setItem(
-    "TASKS",
-    JSON.stringify(tasks)
-  )
+  localStorage.setItem("TASKS", JSON.stringify(tasks));
 }
 
 function loadTasks(): Task[] {
-  const taskJSON =
-    localStorage.getItem(
-      "TASKS"
-    )
+  const taskJSON = localStorage.getItem("TASKS");
 
   if (taskJSON === null) {
-    return []
+    return [];
   }
 
   try {
-    const parsedTasks =
-      JSON.parse(
-        taskJSON
-      ) as Array<{
-        id: string
-        title: string
-        completed: boolean
-        createdAt: string
-      }>
+    const parsedTasks = JSON.parse(taskJSON) as Array<{
+      id: string;
+      title: string;
+      completed: boolean;
+      createdAt: string;
+    }>;
 
-    return parsedTasks.map(
-      (task) => ({
-        ...task,
+    return parsedTasks.map((task) => ({
+      ...task,
 
-        createdAt:
-          new Date(
-            task.createdAt
-          ),
-      })
-    )
+      createdAt: new Date(task.createdAt),
+    }));
   } catch (error) {
-    console.error(
-      "Failed to load tasks:",
-      error
-    )
+    console.error("Failed to load tasks:", error);
 
-    return []
+    return [];
   }
 }
